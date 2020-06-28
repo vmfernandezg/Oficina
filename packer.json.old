@@ -1,0 +1,36 @@
+    
+    {
+        "builders": [{
+            "type": "azure-arm",
+            
+            "subscription_id": "dd648d68-599e-4dc6-a4ee-988b14e75b34",
+            "client_id": "a71d6492-48f4-4f0b-b615-23054eeb6ec2",
+            "client_secret": "d89f384b-eb69-44d9-a3f9-9f1c43a0aed0",
+            "tenant_id": "ecefca96-3b70-4c14-8f34-28b66ac37411",
+            
+            "managed_image_resource_group_name": "santalucia-imagenes-packer",
+            "managed_image_name": "linux-image-packer",
+            
+            "os_type": "Linux",
+            "image_publisher": "OpenLogic",
+            "image_offer": "CentOS",
+            "image_sku": "7.5",
+            
+            "disk_caching_type": "ReadWrite",
+            
+            "location": "West Europe",
+            "vm_size": "Standard_A2_v2"
+        }
+    ],
+"provisioners": [{
+    "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+    "inline": [
+      "yum update -y",
+      "echo Arunret77 | passwd root --stdin",
+
+      "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
+    ],
+    "inline_shebang": "/bin/sh -x",
+    "type": "shell"
+  }]
+}

@@ -1,0 +1,39 @@
+---
+- hosts: webserver
+  become: yes
+  become_user: root
+  become_method: sudo
+
+  tasks:
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+
+    - name: Enable Apache
+      service: 
+        name: httpd 
+        state: started 
+        enabled: true
+
+    - name: Create document root
+      file:
+        path: "/var/www"
+        state: directory
+        owner: "root"
+        mode: '0755'
+
+    - name: Copy index test page
+      template:
+        src: "files/index.html"
+        dest: "/var/www/html/index.html"
+
+    - name: Reload Apache
+      service:
+        name: httpd
+        state: reloaded
+
+    - name: Restart Apache
+      service:
+        name: httpd
+        state: restarted
