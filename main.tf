@@ -143,7 +143,7 @@ storage_os_disk {
 os_profile {
     computer_name  = "Prueba-Linux"
     admin_username = "arqsis"
-    admin_password = "Password1234!"
+    admin_password = "Password1234#"
 }
     
 os_profile_linux_config {
