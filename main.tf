@@ -34,30 +34,6 @@ resource "azurerm_public_ip" "main" {
   domain_name_label   = "santalucia-azurerm-resource"
 }
 
-output "main_public_ip" {
-   value = "${azurerm_public_ip.main.fqdn}"
-}
-
-resource "azurerm_network_interface" "main" {
-  name                = "${var.prefix}-nic"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
-  #network_security_group_id = "${azurerm_network_security_group.main.id}"
-
-ip_configuration {
-    name                          = "testconfiguration1"
-    subnet_id                     = "${azurerm_subnet.main.id}"
-    private_ip_address_allocation = "static"
-    private_ip_address            = "10.0.1.6"
-    public_ip_address_id          = "${azurerm_public_ip.main.id}"
-  }
-}
-
-resource "azurerm_network_interface_security_group_association" "main" {
-  network_interface_id      = "${azurerm_network_interface.main.id}"
-  network_security_group_id = "${azurerm_network_security_group.main.id}"
-}
-
 resource "azurerm_network_security_group" "main" {
     name                = "myNetworkSecurityGroup"
     location            = "westeurope"
@@ -86,6 +62,26 @@ resource "azurerm_network_security_group" "main" {
         source_address_prefix      = "*"
         destination_address_prefix = "*"
     }
+}
+
+resource "azurerm_network_interface" "main" {
+  name                = "myNIC"
+  location            = "westeurope"
+  resource_group_name = "${azurerm_resource_group.main.name}"
+  #network_security_group_id = "${azurerm_network_security_group.main.id}"
+
+ip_configuration {
+    name                          = "testconfiguration1"
+    subnet_id                     = "${azurerm_subnet.main.id}"
+    private_ip_address_allocation = "static"
+    private_ip_address            = "10.0.1.6"
+    public_ip_address_id          = "${azurerm_public_ip.main.id}"
+  }
+}
+
+resource "azurerm_network_interface_security_group_association" "main" {
+  network_interface_id      = "${azurerm_network_interface.main.id}"
+  network_security_group_id = "${azurerm_network_security_group.main.id}"
 }
 
 #resource "azurerm_managed_disk" "datadisk" {
@@ -154,4 +150,8 @@ os_profile_linux_config {
   #}
 }
 
+}
+
+output "main_public_ip" {
+   value = "${azurerm_public_ip.main.fqdn}"
 }
