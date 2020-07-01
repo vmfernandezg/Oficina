@@ -143,7 +143,7 @@ os_profile {
 }
     
 os_profile_linux_config {
-      disable_password_authentication = false
+      disable_password_authentication = true
       ssh_keys = {
         path     = "/home/arqsis/.ssh/authorized_keys"
         key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaJDhQQ6tAPRoEnVKHpKIK8fAKmuIYcUqCwzPRglCbK4x5oACjyH8CM97z/D3TGtCkrzOJtk/rCGocVQdLQPcth6fkhqOVaWxsY2Co1PfRUuYqWA768PQxoG+9A1EtQc3ZoSG9QeoPB9Zf8AZbaoykt9qP47vYfEewMKq60u3Q1gfRF64HChJkduYvjZ9gXAfqVlnOpLaGwP3gb+B+DJGReH32SwBtKmA8tlG8DZdRX/HhYl2+3nQ45znn0ThQ30dnV3aXscqaPnbqJBYsoQATPsja47umxj6TKmHZki5aq8VXfVhLheWrHS0lN1pBWXGp8sPtagd/vR2G1rg5qYbv arqsis@R90SFQVR"
