@@ -38,35 +38,35 @@ output "main_public_ip" {
    value = "${azurerm_public_ip.main.fqdn}"
 }
 
-#resource "azurerm_network_security_group" "main" {
-    #name                = "myNetworkSecurityGroup"
-    #location            = "westeurope"
-    #resource_group_name = "${azurerm_resource_group.main.name}"
+resource "azurerm_network_security_group" "main" {
+    name                = "myNetworkSecurityGroup"
+    location            = "westeurope"
+    resource_group_name = "${azurerm_resource_group.main.name}"
     
-    #security_rule {
-        #name                       = "Access-SSH"
-        #priority                   = 1001
-        #direction                  = "Inbound"
-        #access                     = "Allow"
-        #protocol                   = "Tcp"
-        #source_port_range          = "*"
-        #destination_port_range     = "22"
-        #source_address_prefix      = "*"
-        #destination_address_prefix = "*"
-    #}
+    security_rule {
+        name                       = "Access-SSH"
+        priority                   = 1001
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "22"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+    }
   
-     #security_rule {
-        #name                       = "Access-http"
-        #priority                   = 1002
-        #direction                  = "Inbound"
-        #access                     = "Allow"
-        #protocol                   = "Tcp"
-        #source_port_range          = "*"
-        #destination_port_range     = "80"
-        #source_address_prefix      = "*"
-        #destination_address_prefix = "*"
-    #}
-#}
+     security_rule {
+        name                       = "Access-http"
+        priority                   = 1002
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "80"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+    }
+}
 
 resource "azurerm_network_interface" "main" {
   name                = "${var.prefix}-nic"
@@ -83,10 +83,10 @@ ip_configuration {
   }
 }
 
-#resource "azurerm_network_interface_security_group_association" "main" {
-  #network_interface_id      = "${azurerm_network_interface.main.id}"
-  #network_security_group_id = "${azurerm_network_security_group.main.id}"
-#}
+resource "azurerm_network_interface_security_group_association" "main" {
+  network_interface_id      = "${azurerm_network_interface.main.id}"
+  network_security_group_id = "${azurerm_network_security_group.main.id}"
+}
 
 #resource "azurerm_managed_disk" "datadisk" {
   #name                 = "${var.prefix}-Linux-datadisk"
@@ -143,7 +143,7 @@ storage_os_disk {
 os_profile {
     computer_name  = "Prueba-Linux"
     admin_username = "arqsis"
-    admin_password = "Password1234!"
+    admin_password = "Password1234#"
 }
     
 os_profile_linux_config {
@@ -153,4 +153,5 @@ os_profile_linux_config {
         #key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCntFQwuKzxj+ETFd1H+YIrEn4JGy6WZI7Q02whS/2xzIyEvN3g/Le72HtORhwY2gE8uHJ1zcassOvvWkWctMq8LrZEYiJ1LgU3pImpz4qubHUs1HctQU0j6Pzr1e5dNMjUi3raPnRrf7EVhkA1S7JUglbE22kM/mTYmcHwbfz8evELuoePw/M4YS5tA9M7N52iQi4HxxCFZOJE12SftDuZlIIkMbLK/TmEWM7WNtWjZ3tqSGvLPynxE5GcHcmvJ37oIg8oVUmF5b1URWYyFzkHMK0Gq/PlvQUldVIQ8BnWqqJZ7DEeqbpUIF1gU3ychS0iJwVktnbKg8BikPh7S8bp root@bitnami-jenkins-0858"
   #}
 }
+
 }
