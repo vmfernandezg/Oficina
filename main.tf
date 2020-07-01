@@ -65,8 +65,8 @@ resource "azurerm_network_security_group" "main" {
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "myNIC"
-  location            = "westeurope"
+  name                = "${var.prefix}-nic"
+  location            = "${azurerm_resource_group.main.location}"
   resource_group_name = "${azurerm_resource_group.main.name}"
   #network_security_group_id = "${azurerm_network_security_group.main.id}"
 
@@ -143,11 +143,11 @@ os_profile {
 }
     
 os_profile_linux_config {
-    disable_password_authentication = false
-        #ssh_keys {
-        #path     = "/root/.ssh/authorized_keys"
-        #key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCntFQwuKzxj+ETFd1H+YIrEn4JGy6WZI7Q02whS/2xzIyEvN3g/Le72HtORhwY2gE8uHJ1zcassOvvWkWctMq8LrZEYiJ1LgU3pImpz4qubHUs1HctQU0j6Pzr1e5dNMjUi3raPnRrf7EVhkA1S7JUglbE22kM/mTYmcHwbfz8evELuoePw/M4YS5tA9M7N52iQi4HxxCFZOJE12SftDuZlIIkMbLK/TmEWM7WNtWjZ3tqSGvLPynxE5GcHcmvJ37oIg8oVUmF5b1URWYyFzkHMK0Gq/PlvQUldVIQ8BnWqqJZ7DEeqbpUIF1gU3ychS0iJwVktnbKg8BikPh7S8bp root@bitnami-jenkins-0858"
-  #}
+      disable_password_authentication = false
+      ssh_keys = [{
+        path     = "/home/arqsis/.ssh/authorized_keys"
+        key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaJDhQQ6tAPRoEnVKHpKIK8fAKmuIYcUqCwzPRglCbK4x5oACjyH8CM97z/D3TGtCkrzOJtk/rCGocVQdLQPcth6fkhqOVaWxsY2Co1PfRUuYqWA768PQxoG+9A1EtQc3ZoSG9QeoPB9Zf8AZbaoykt9qP47vYfEewMKq60u3Q1gfRF64HChJkduYvjZ9gXAfqVlnOpLaGwP3gb+B+DJGReH32SwBtKmA8tlG8DZdRX/HhYl2+3nQ45znn0ThQ30dnV3aXscqaPnbqJBYsoQATPsja47umxj6TKmHZki5aq8VXfVhLheWrHS0lN1pBWXGp8sPtagd/vR2G1rg5qYbv arqsis@R90SFQVR"
+      }]
 }
 
 }
