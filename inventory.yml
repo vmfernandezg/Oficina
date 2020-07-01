@@ -4,6 +4,6 @@ santalucia-azurerm-resource.westeurope.cloudapp.azure.com
 [webserver:vars]
 ansible_connection=ssh
 ansible_ssh_user=arqsis
-ansible_ssh_pass=Password1234#
+#ansible_ssh_pass=Password1234#
 ansible_become_pass=Password1234#
 
