@@ -5,14 +5,14 @@ pipeline {
 
 	      /* stage ('Checkout') {
 		        checkout scm
-	      }
+	      } */
 
 	      stage('Create Image') {
             steps {
               sh '/usr/local/bin/packer validate packer.json'
               sh '/usr/local/bin/packer build -force packer.json'
             }
-        } */
+        }
 	  
         stage('TF Plan') {
             steps {
@@ -44,7 +44,7 @@ pipeline {
               /* sh '/usr/bin/ssh-keygen'
               sh '/usr/bin/ssh-copy-id santalucia-azurerm-resource.westeurope.cloudapp.azure.com'
               sh '/usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml --extra-vars "ansible_sudo_pass=Password123#"' */
-              sh '/usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml'
+              sh '/usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml ---key-file id_rsa'
             } 
         }
     }    
