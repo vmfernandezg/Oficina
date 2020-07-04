@@ -45,7 +45,7 @@ pipeline {
               ansiblePlaybook (
                 inventory: 'inventory.yml',
                 playbook: 'apache-ansible.yml',
-                extras: '-u arqsis --ssh-extra-args='-o StrictHostkeyChecking=no''
+                extras: '-u arqsis --ssh-extra-args="-o StrictHostkeyChecking=no"'
               )
             } 
         }
