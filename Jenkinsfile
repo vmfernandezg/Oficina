@@ -41,10 +41,7 @@ pipeline {
               script {
               def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
             }
-              /* sh '/usr/bin/ssh-keygen'
-              sh '/usr/bin/ssh-copy-id santalucia-azurerm-resource.westeurope.cloudapp.azure.com'
-              sh '/usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml --extra-vars "ansible_sudo_pass=Password123#"' */
-              sh '/usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml ---key-file id_rsa'
+              sh '/usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml'
             } 
         }
     }    
