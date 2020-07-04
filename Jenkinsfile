@@ -43,10 +43,10 @@ pipeline {
             }
               sh '/usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml -u arqsis --ssh-extra-args='-o StrictHostkeyChecking=no'' */
               ansiblePlaybook (
-                inventory: 'inventory.yml',
-                playbook: 'apache-ansible.yml',
                 credentialsId: 'arqsis',
                 hostKeyChecking: 'false'
+                inventory: 'inventory.yml',
+                playbook: 'apache-ansible.yml',
               )
             } 
         }
