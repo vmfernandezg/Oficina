@@ -45,7 +45,8 @@ pipeline {
               ansiblePlaybook (
                 inventory: 'inventory.yml',
                 playbook: 'apache-ansible.yml',
-                credentialsId: 'arqsis'
+                credentialsId: 'arqsis',
+                hostKeyChecking: 'false'
               )
             } 
         }
