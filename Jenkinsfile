@@ -46,10 +46,7 @@ pipeline {
                 inventory: 'inventory.yml',
                 playbook: 'apache-ansible.yml',
                 credentialsId: 'arqsis'
-                hostKeyChecking: 'false',
-                extraVars: [
-                  ssh-extra-args: [value: StrictHostkeyChecking=no]
-                ])
+              )
             } 
         }
     }    
