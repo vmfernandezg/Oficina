@@ -7,7 +7,7 @@ pipeline {
 		        checkout scm
 	      } */
 
-	      stage('Create Image') {
+	      /* stage('Create Image') {
             steps {
               sh '/usr/local/bin/packer validate packer.json'
               sh '/usr/local/bin/packer build -force packer.json'
@@ -34,7 +34,7 @@ pipeline {
             }
               sh '/usr/local/bin/terraform apply -input=false myplan'
             }
-        }
+        } */
         
         stage('Approval-Configuration') {
             steps {
