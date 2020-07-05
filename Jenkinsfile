@@ -11,9 +11,7 @@ pipeline {
             steps {
               sh '/usr/local/bin/packer validate packer.json'
               sh '/usr/local/bin/packer build -force packer.json'
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                  sh "exit 1"
-                }
+              sh "exit 1"
             }
         }
 	  
