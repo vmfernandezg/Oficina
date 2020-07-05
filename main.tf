@@ -156,11 +156,6 @@ output "main_public_ip" {
    value = "${azurerm_public_ip.main.fqdn}"
 }
 
-#terraform {
-  #backend "azurerm" {
-    #resource_group_name   = "pruebarg"
-    #storage_account_name  = "vmfernandezg"
-    #container_name        = "terraform"
-    #key                   = "terraform.tfstate"
-  #}
-#}
+terraform {
+  backend "azurerm" {}
+}
