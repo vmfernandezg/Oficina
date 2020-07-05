@@ -1,3 +1,12 @@
+terraform {
+  backend "azurerm" {
+    resource_group_name   = "pruebarg"
+    storage_account_name  = "vmfernandezg"
+    container_name        = "terraform"
+    key                   = "terraform.tfstate"
+  }
+}
+
 provider "azurerm" {
   version = "~>2.0" 
   subscription_id = "${var.sub}"
