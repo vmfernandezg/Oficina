@@ -44,7 +44,7 @@ pipeline {
               sh '/usr/bin/whoami'
               /* sh '/usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml -u arqsis --key-file /home/tomcat/.ssh/id_rsa' */
                 sh '''
-                  /usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml --ssh-extra-args='"-o StrictHostKeyChecking=no -o ServerAliveInterval=30"'
+                  /usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml -u arqsis --ssh-extra-args='"-o StrictHostKeyChecking=no"'
                 '''
               /* ansiblePlaybook (
                 credentialsId: 'arqsis',
