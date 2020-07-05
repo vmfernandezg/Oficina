@@ -35,6 +35,7 @@ pipeline {
               script {
               def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
             }
+                sh '/bin/rm -fR /var/lib/jenkins/workspace/Oficina/terraform.tfstate'
                 sh '/usr/local/bin/terraform apply -input=false myplan'
             }
         }
@@ -45,6 +46,7 @@ pipeline {
               def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
             }
               sh '/usr/bin/whoami'
+              sh ':> /var/lib/jenkins/.ssh/known_hosts'
               sh '''
                 /usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml -u arqsis --ssh-extra-args="'-o StrictHostKeyChecking=no'"
               '''
