@@ -18,8 +18,8 @@ pipeline {
 	  
         stage('TF Plan') {
             steps {
-                /* sh '/usr/local/bin/terraform init -input=false' */
-                sh '/usr/local/bin/terraform init -backend-config="storage_account_name=vmfernandezg" -backend-config="container_name=terraform" -backend-config="access_key=f4QfzMXGv9+snDAjy77yULFIEXYvwntNCG5CAOFb8yyG+K7rdDhl2SFxErMh9VdAgChkm1t9fqpAuUfVi5MXlw==" -backend-config="key=terraform.tfstate"'
+                sh '/usr/local/bin/terraform init -input=false'
+                /* sh '/usr/local/bin/terraform init -backend-config="storage_account_name=vmfernandezg" -backend-config="container_name=terraform" -backend-config="access_key=f4QfzMXGv9+snDAjy77yULFIEXYvwntNCG5CAOFb8yyG+K7rdDhl2SFxErMh9VdAgChkm1t9fqpAuUfVi5MXlw==" -backend-config="key=terraform.tfstate"' */
                 sh '/usr/local/bin/terraform plan -out=myplan -input=false'
        	    }
      	  }
