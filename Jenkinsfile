@@ -3,9 +3,9 @@ pipeline {
  
     stages {
 
-	      /* stage ('Checkout') {
+	      stage ('Checkout') {
 		        checkout scm
-	      } */
+	      }
 
 	      /* stage('Create Image') {
             steps {
