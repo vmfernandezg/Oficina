@@ -18,18 +18,14 @@ pipeline {
 	  
         stage('TF Plan') {
             steps {
-              container('terraform') {
                 sh '/usr/local/bin/terraform init -input=false'
                 sh '/usr/local/bin/terraform plan -out=myplan -input=false'
-              }
        	    }
      	  }
 
 	      stage('Validate') {
       	    steps {
-              container('terraform') {
                 sh '/usr/local/bin/terraform validate'
-              }
 	          }
 	      }
     	  
@@ -38,9 +34,7 @@ pipeline {
               script {
               def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
             }
-              container('terraform') {
                 sh '/usr/local/bin/terraform apply -input=false myplan'
-              }
             }
         }
         
