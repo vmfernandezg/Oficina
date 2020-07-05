@@ -13,6 +13,7 @@ pipeline {
               sh '/usr/local/bin/packer build -force packer.json'
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                   sh "exit 1"
+                }
             }
         }
 	  
