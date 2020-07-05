@@ -19,6 +19,7 @@ pipeline {
         stage('TF Plan') {
             steps {
                 sh '/usr/local/bin/terraform init -input=false'
+                sh '/bin/rm -fR /var/lib/jenkins/workspace/Oficina/terraform.tfstate'
                 /* sh '/usr/local/bin/terraform init -backend-config="storage_account_name=vmfernandezg" -backend-config="container_name=terraform" -backend-config="access_key=f4QfzMXGv9+snDAjy77yULFIEXYvwntNCG5CAOFb8yyG+K7rdDhl2SFxErMh9VdAgChkm1t9fqpAuUfVi5MXlw==" -backend-config="key=terraform.tfstate"' */
                 sh '/usr/local/bin/terraform plan -out=myplan -input=false'
        	    }
@@ -35,7 +36,6 @@ pipeline {
               script {
               def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
             }
-                sh '/bin/rm -fR /var/lib/jenkins/workspace/Oficina/terraform.tfstate'
                 sh '/usr/local/bin/terraform apply -input=false myplan'
             }
         }
