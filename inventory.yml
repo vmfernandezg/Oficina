@@ -1,5 +1,6 @@
 [webserver]
-santalucia-azurerm-resource.westeurope.cloudapp.azure.com
+13.94.228.174
+#santalucia-azurerm-resource.westeurope.cloudapp.azure.com
 
 [webserver:vars]
 ansible_connection=ssh
