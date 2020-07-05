@@ -42,7 +42,7 @@ pipeline {
               def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
             } */
               sh '/usr/bin/whoami'
-              sh '/usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml'
+              sh '/usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml -u arqsis --key-file /home/tomcat/.ssh/id_rsa'
               /* sh "/usr/bin/ansible-playbook -i inventory.yml  apache-ansible.yml -u arqsis --ssh-extra-args='-o StrictHostkeyChecking=no'" */
               /* ansiblePlaybook (
                 credentialsId: 'arqsis',
