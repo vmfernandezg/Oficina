@@ -7,12 +7,13 @@ pipeline {
 		        checkout scm
 	      } */
 
-	      /* stage('Create Image') {
+	      stage('Create Image') {
             steps {
               sh '/usr/local/bin/packer validate packer.json'
               sh '/usr/local/bin/packer build -force packer.json'
+              sh 'exit 1'   // failure
             }
-        } */
+        }
 	  
         stage('TF Plan') {
             steps {
